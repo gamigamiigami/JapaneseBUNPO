@@ -1,0 +1,205 @@
+/* ベース設定 */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* スクリーン全体 */
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* ヘッダー */
+#header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+/* プレイエリア */
+/* お好みのグラデーション背景に変更 */
+#playArea {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 100px);
+  background: linear-gradient(to bottom, #e0f7fa, #80deea);
+  overflow: hidden;
+}
+
+/* 仕分けエリアオーバーレイ */
+#sortingAreaOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  border-top: 2px solid #333;
+}
+
+/* 各仕分けスペース */
+.sorting-space {
+  position: relative;
+  /* 背景色はJS側で割り当てます */
+  border-right: 1px solid #333;
+  text-align: center;
+  padding: 10px 5px;
+  box-sizing: border-box;
+}
+
+/* 最後の仕分けエリアは右のボーダーを消す */
+.sorting-space:last-child {
+  border-right: none;
+}
+
+/* 仕分けラベル：自動縮小して一行に収める */
+.sorting-label {
+  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* 落下する単語 */
+.word {
+  position: absolute;
+  background-color: #fff;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ドラッグ中のエフェクト */
+.dragging {
+  opacity: 0.7;
+}
+
+/* タイマー残り時間警告 */
+.low-time {
+  color: red;
+}
+
+/* ペナルティエフェクト */
+.penalty-effect {
+  position: absolute;
+  color: red;
+  font-weight: bold;
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#startScreen {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(to bottom, #f0f8ff, #87cefa);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#gameTitle {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#gameDescription {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+#startButton {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#startButton:hover {
+  background-color: #0056b3;
+}
+
+/* 正解時の光るエフェクト */
+.word.correct {
+  animation: correctGlow 0.5s ease-out;
+}
+
+@keyframes correctGlow {
+  0% {
+    box-shadow: 0 0 10px 5px yellow;
+  }
+  100% {
+    box-shadow: none;
+  }
+}
+
+/* 誤答時の赤くするエフェクト */
+.word.wrong {
+  animation: wrongFlash 0.5s ease-out forwards;
+}
+@keyframes wrongFlash {
+  0% {
+    background-color: red;
+    color: white;
+  }
+  100% {
+    background-color: red;
+    color: white;
+  }
+}
+
+/* COMBO エフェクト（10回ごと） */
+#combo.combo-effect {
+  animation: comboGlow 0.5s ease-in-out;
+}
+
+@keyframes comboGlow {
+  0% {
+    text-shadow: 0 0 5px yellow;
+  }
+  50% {
+    text-shadow: 0 0 15px yellow;
+    transform: scale(1.2);
+  }
+  100% {
+    text-shadow: 0 0 5px yellow;
+  }
+}
+
+/* COMBO エフェクト（50回ごと、特別版） */
+#combo.combo-effect-50 {
+  animation: comboGlow50 0.7s ease-in-out;
+  color: orange;
+}
+
+@keyframes comboGlow50 {
+  0% {
+    text-shadow: 0 0 5px orange;
+  }
+  50% {
+    text-shadow: 0 0 25px orange;
+    transform: scale(1.5);
+  }
+  100% {
+    text-shadow: 0 0 5px orange;
+  }
+}

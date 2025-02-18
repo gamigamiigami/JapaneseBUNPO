@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ゲーム</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- モード選択画面 -->
+    <div id="modeSelection" class="screen">
+      <h1>モード選択</h1>
+      <div id="modeButtonsContainer"></div>
+    </div>
+
+    <!-- スタート画面 -->
+    <div id="startScreen" class="screen" style="display: none">
+      <h1 id="gameTitle">ゲームタイトル</h1>
+      <p id="gameDescription">ゲーム説明</p>
+    </p>
+    <h2>Produce by igami</h2>
+      <button id="startButton">スタート</button>
+      <button id="backToModeButton">モード選択に戻る</button>
+    </div>
+
+    <!-- ゲーム画面 -->
+    <div id="gameScreen" class="screen" style="display: none">
+      <div id="header">
+        <div id="timer">Time: 60</div>
+        <div id="score">Score: 0</div>
+        <div id="maxCombo">MAX: 0</div>
+        <div id="combo">COMBO: 0</div>
+      </div>
+      <div id="playArea">
+        <div id="sortingAreaOverlay"></div>
+        <!-- 仕分けエリアは JS 側で生成 -->
+      </div>
+      <button id="returnButton">Return</button>
+    </div>
+
+    <script src="gameEngine.js"></script>
+  </body>
+</html>
